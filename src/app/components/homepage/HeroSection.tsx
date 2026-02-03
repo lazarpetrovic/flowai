@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 export function HeroSection() {
     return <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -17,7 +18,20 @@ export function HeroSection() {
             rounded-full blur-3xl" />
         </div>
         <div className="container mx-auto px-6 relative z-10">
-            
+            <motion.div 
+            initial={{opacity: 0, x: -50}}
+            animate={{opacity: 1, x: 0}}
+            transition={{duration: 0.8}}
+            className="space-y-8">
+                <motion.div
+                initial={{opacity: 0, y: 20}}
+                animate={{opacity: 1, y:0}}
+                transition={{delay: 0.2}}
+                className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+                    <Sparkles className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-foreground">AI-Powered Automation</span>
+                </motion.div>
+            </motion.div>
         </div>
     </section>
 }
