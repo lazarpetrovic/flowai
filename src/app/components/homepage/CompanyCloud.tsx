@@ -4,7 +4,7 @@ const companies = ["Slack", "Notion", "GitHub", "Figma", "Stripe", "Shopify"]
 
 export function CompanyCloud() {
     return (
-        <section className="py-20 border-t border-white/10">
+        <section className="py-20 border-t border-white/10 mt-10">
             <div className="container mx-auto px-6">
                 <motion.div
                 initial={{opacity: 0, y: 20}}
