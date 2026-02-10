@@ -1,6 +1,8 @@
 import { BrowserRouter as  Router, Routes, Route } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { Navigation } from './components/Navigation.tsx'
+import { PricingPage } from './pages/Pricing.tsx';
+import { Footer } from './components/Footer.tsx';
   
 function App() {
   return (
@@ -10,8 +12,10 @@ function App() {
       <main>
         <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/pricing" element={<PricingPage />} />
         </Routes>
       </main>
+      <Footer />
       </div>
     </Router>
   );
