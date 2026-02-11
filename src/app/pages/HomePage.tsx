@@ -6,6 +6,8 @@ import { ProductPreview } from "../components/homepage/ProductPreview";
 import { UseCases } from "../components/homepage/UseCases";
 import { Testimonials } from "../components/homepage/Testimonial";
 import { Pricing } from "../components/homepage/Pricing";
+import { CTAsection } from "../components/homepage/CTAsection";
+import { Footer } from "../components/Footer";
 
 export function HomePage() {
   return <>
@@ -17,5 +19,6 @@ export function HomePage() {
     <UseCases/>
     <Testimonials/>
     <Pricing/>
+    <CTAsection/>
   </>;
 }
