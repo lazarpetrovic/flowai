@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, Calendar, MapPin } from "lucide-react";
 import { useState } from "react";
+import { CTAsection } from "../components/homepage/CTAsection.tsx";
 
 export function ContactPage() {
     const [formData, setFormData] = useState({
@@ -35,13 +36,13 @@ export function ContactPage() {
                     </motion.div>
                 </div>
             </div>
-            <div className="container mx-auto px-6">
-                <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+            <div className="container mx-auto px-6 mb-20">
+                <div className="flex flex-col lg:flex-row gap-16 max-w-6xl mx-auto items-start">
                     <motion.div
                     initial={{opacity: 0, x:-30}}
                     animate={{opacity: 1, x: 0}}
                     transition={{duration: 0.6}}
-                    className="p-8 rounded-3xl bg-card/50 backdrop-blur-xl border border-border">
+                    className="p-8 rounded-3xl bg-card/50 backdrop-blur-xl border border-border w-full lg:flex-1 lg:min-w-0 self-start">
                         <h2 className="text-3xl font-bold mb-6">Send us a message</h2>
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
@@ -98,7 +99,7 @@ export function ContactPage() {
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="space-y-8"
+                    className="space-y-8 w-full lg:flex-1 lg:min-w-0 self-start"
                     >
                     {/* Contact Cards */}
                     <div className="space-y-4">
@@ -172,6 +173,7 @@ export function ContactPage() {
                     </motion.div>
                 </div>
             </div>
+            <CTAsection />
         </div>
     )
 }

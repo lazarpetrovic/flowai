@@ -4,10 +4,12 @@ import { Navigation } from './components/Navigation.tsx'
 import { PricingPage } from './pages/Pricing.tsx';
 import { Footer } from './components/Footer.tsx';
 import { ContactPage } from './pages/ContactPage.tsx';
+import ScrollToTop from './utils/ScrollToTop.tsx';
   
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-background text-foreground antialiased">
       <Navigation />
       <main>
