@@ -3,6 +3,7 @@ import { HomePage } from './pages/HomePage'
 import { Navigation } from './components/Navigation.tsx'
 import { PricingPage } from './pages/Pricing.tsx';
 import { Footer } from './components/Footer.tsx';
+import { ContactPage } from './pages/ContactPage.tsx';
   
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </main>
       <Footer />
