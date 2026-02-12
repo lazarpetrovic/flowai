@@ -39,7 +39,7 @@ export function FeaturesGrid() {
     return (
         <section className="py-32 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent" />
-            <div className="container mx-auto px-6 relative">
+            <div className="container mx-auto max-w-7xl px-6 relative">
                 <motion.div
                 initial={{opacity: 0, y: 20}}
                 whileInView={{opacity: 1, y: 0}}

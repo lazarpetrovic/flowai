@@ -27,7 +27,7 @@ const testimonials = [
   
   export function Testimonials() {
     return (
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-32 relative">
         {/* Background Elements */}
         <motion.div
           animate={{
@@ -42,7 +42,7 @@ const testimonials = [
           className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
         />
   
-        <div className="container mx-auto px-6 relative">
+        <div className="container mx-auto max-w-7xl px-6 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

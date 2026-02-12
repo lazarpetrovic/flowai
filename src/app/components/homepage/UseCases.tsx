@@ -37,9 +37,9 @@ const useCases = [
     return (
       <section className="py-32 relative">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/5 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/10 via-transparent to-transparent" />
         
-        <div className="container mx-auto px-6 relative">
+        <div className="container mx-auto max-w-7xl px-6 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

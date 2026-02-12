@@ -18,7 +18,7 @@ export function ContactPage() {
     return (
         <div className="pt-32">
             <div className="pb-20">
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto max-w-7xl px-6">
                     <motion.div
                     initial={{opacity: 0, y: 30}}
                     animate={{opacity: 1, y: 0}}
@@ -36,7 +36,7 @@ export function ContactPage() {
                     </motion.div>
                 </div>
             </div>
-            <div className="container mx-auto px-6 mb-20">
+            <div className="container mx-auto max-w-7xl px-6 mb-20">
                 <div className="flex flex-col lg:flex-row gap-16 max-w-6xl mx-auto items-start">
                     <motion.div
                     initial={{opacity: 0, x:-30}}

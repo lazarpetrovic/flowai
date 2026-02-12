@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export function CTAsection() {
     return (
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-32 relative">
         {/* Background Effects */}
         <div className="absolute inset-0">
           <motion.div
@@ -16,7 +16,7 @@ export function CTAsection() {
               repeat: Infinity,
               ease: 'easeInOut',
             }}
-            className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+            className="absolute top-0 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[100px]"
           />
           <motion.div
             animate={{
@@ -32,7 +32,7 @@ export function CTAsection() {
           />
         </div>
   
-        <div className="container mx-auto px-6 relative">
+        <div className="container mx-auto max-w-7xl px-6 relative">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

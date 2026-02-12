@@ -9,7 +9,7 @@ export function Footer() {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
   
-        <div className="container mx-auto px-6 py-16 relative">
+        <div className="container mx-auto max-w-7xl px-6 py-16 relative">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             {/* Brand Column */}
             <div className="space-y-4">

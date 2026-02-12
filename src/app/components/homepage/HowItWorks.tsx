@@ -22,7 +22,7 @@ const steps = [
 export function HowItWorks() {
     return (
         <section className="py-32 relative overflow-hidden">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto max-w-7xl px-6">
                 <motion.div
                 initial={{opacity: 0, y: 20}}
                 whileInView={{opacity: 1, y: 0}}
@@ -40,7 +40,6 @@ export function HowItWorks() {
                     </p>
                 </motion.div>
                 <div className="grid lg:grid-cols-3 gap-12 relative">
-                    <div className="hidden lg:block absolute top-20 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary opacity-20" />
                     {steps.map((step, index) => (
             <motion.div
               key={index}
