@@ -66,7 +66,7 @@ export function PricingPage() {
     return (
         <div className="pt-32">
             <section className="pb-20">
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto max-w-7xl px-6">
                     <motion.div
                     initial={{opacity: 0, y: 20}}
                     animate={{opacity: 1, y: 0}}
@@ -86,7 +86,7 @@ export function PricingPage() {
             </section>
 
             <section className="pb-32">
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto max-w-7xl px-6">
                     <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                         {plans.map((plan, index) => (
                             <motion.div
