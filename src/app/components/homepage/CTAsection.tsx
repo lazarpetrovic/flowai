@@ -20,12 +20,9 @@ export function CTAsection() {
 
           <div className="relative z-10 px-10 py-16 md:px-16 md:py-20">
             <div className="max-w-2xl">
-              <p className="text-xs uppercase tracking-[0.12em] text-muted font-medium mb-6">
-                Get started today
-              </p>
               <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-[1.0]">
                 Ready to<br />
-                <span className="text-primary">automate</span>?
+                automate?
               </h2>
               <p className="text-base text-muted mb-10 max-w-md leading-relaxed">
                 Join thousands of teams already using FlowAI to streamline their

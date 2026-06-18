@@ -45,15 +45,14 @@ export function UseCases() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-14"
+          className="mb-14 grid md:grid-cols-[1fr_auto] items-end gap-8"
         >
-          <p className="text-xs uppercase tracking-[0.12em] text-muted font-medium mb-4">
-            Use Cases
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold max-w-xl">
-            Built for every{" "}
-            <span className="text-primary">use case</span>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            One platform.<br />Every team.
           </h2>
+          <p className="text-sm text-muted max-w-[260px] leading-relaxed md:pb-1">
+            From sales to engineering — FlowAI adapts to how your team actually works.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-4">

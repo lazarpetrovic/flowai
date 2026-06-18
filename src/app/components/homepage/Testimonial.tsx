@@ -30,15 +30,20 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-14"
+          className="mb-14 flex items-start gap-6 md:gap-10"
         >
-          <p className="text-xs uppercase tracking-[0.12em] text-muted font-medium mb-4">
-            Testimonials
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold max-w-xl">
-            Loved by{" "}
-            <span className="text-primary">thousands</span>
-          </h2>
+          <span
+            aria-hidden
+            className="hidden md:block text-[9rem] leading-[0.75] font-bold text-primary/15 select-none flex-shrink-0 mt-1"
+          >
+            "
+          </span>
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-3">
+              Loved by thousands.
+            </h2>
+            <p className="text-sm text-muted">Real teams. Real results.</p>
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-4">

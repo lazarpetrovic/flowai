@@ -10,15 +10,11 @@ export function ProductPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-14"
+          className="mb-14 flex flex-col items-center text-center"
         >
-          <p className="text-xs uppercase tracking-[0.12em] text-muted font-medium mb-4">
-            Product
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold max-w-xl">
-            See{" "}
-            <span className="text-primary">FlowAI</span>
-            {" "}in action
+          <span className="font-mono text-[11px] text-muted/50 tracking-[0.2em] mb-5">— 04 —</span>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            See FlowAI in action
           </h2>
         </motion.div>
 

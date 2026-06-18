@@ -34,15 +34,15 @@ export function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
-          <p className="text-xs uppercase tracking-[0.12em] text-muted font-medium mb-4">
-            How it works
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold max-w-xl">
-            Up and running{" "}
-            <span className="text-primary">in three steps</span>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Up and running<br />in three steps.
           </h2>
+          <p className="text-sm text-muted max-w-xs leading-relaxed md:text-right md:pb-1">
+            No setup calls. No long onboarding.<br />
+            Connect, build, and go live in minutes.
+          </p>
         </motion.div>
 
         {/* Steps */}

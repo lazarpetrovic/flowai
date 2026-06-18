@@ -58,16 +58,15 @@ export function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-14"
+          className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-4"
         >
-          <p className="text-xs uppercase tracking-[0.12em] text-muted font-medium mb-4">
-            Pricing
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold max-w-xl">
-            Simple,{" "}
-            <span className="text-primary">transparent</span>{" "}
-            pricing
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Simple,<br />transparent pricing.
           </h2>
+          <p className="text-sm text-muted max-w-[240px] leading-relaxed md:text-right md:pb-1">
+            No hidden fees. No surprise bills.<br />
+            Change or cancel anytime.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-4 max-w-5xl">
