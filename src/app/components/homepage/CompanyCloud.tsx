@@ -1,39 +1,43 @@
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
-const companies = ["Slack", "Notion", "GitHub", "Figma", "Stripe", "Shopify"]
+const companies = ["Slack", "Notion", "GitHub", "Figma", "Stripe", "Shopify", "Linear", "Vercel", "HubSpot", "Salesforce"];
 
 export function CompanyCloud() {
-    return (
-        <section className="py-20 border-t border-white/10 mt-10">
-            <div className="container mx-auto max-w-7xl px-6">
-                <motion.div
-                initial={{opacity: 0, y: 20}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                transition={{duration: 0.6}}
-                className="text-center mb-12">
-                    <p className="text-sm text-muted uppercase tracking-wider">
-                        Trusted by Leading Teams
-                    </p>
-                </motion.div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-                    {companies.map((company, index) => (
-                        <motion.div
-                        key={company}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.15 }}
-                        className="flex items-center justify-center"
-                        >
-                        <div className="px-6 py-4 text-muted hover:text-foreground transition-colors text-lg font-semibold">
-                            {company}
-                        </div>
+  // Duplicate for seamless loop
+  const doubled = [...companies, ...companies];
 
-                        </motion.div>
-                    ))}
-                </div>
+  return (
+    <section className="py-16 border-t border-border/50 overflow-hidden">
+      <div className="container mx-auto max-w-7xl px-6 mb-8">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-xs uppercase tracking-[0.12em] text-muted/60 font-medium text-center"
+        >
+          Trusted by teams at
+        </motion.p>
+      </div>
+
+      {/* Marquee */}
+      <div className="relative">
+        {/* Fade masks */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-background to-transparent" />
+
+        <div className="marquee-track">
+          {doubled.map((company, i) => (
+            <div
+              key={i}
+              className="flex items-center justify-center px-10 py-2"
+            >
+              <span className="text-muted/50 hover:text-muted font-semibold text-sm transition-colors duration-200 whitespace-nowrap cursor-default select-none">
+                {company}
+              </span>
             </div>
-        </section>
-    )
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
