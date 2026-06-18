@@ -1,187 +1,275 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Activity, Clock, CheckCircle, Zap, Filter, Mail, MessageSquare, Webhook } from "lucide-react";
 import { Link } from "react-router-dom";
 
+/* ── Workflow node inside the mockup ───────────────────────────────────── */
+interface NodeProps {
+  icon: React.ElementType;
+  label: string;
+  sub: string;
+  active?: boolean;
+  iconColor?: string;
+  iconBg?: string;
+}
+
+function WorkflowNode({ icon: Icon, label, sub, active = false, iconColor = "text-muted", iconBg = "bg-border/20" }: NodeProps) {
+  return (
+    <div className={`
+      w-[118px] flex-shrink-0 rounded-lg border p-3 transition-colors duration-200
+      ${active
+        ? "border-primary/50 bg-primary/5 ring-1 ring-primary/15"
+        : "border-border bg-card/80"}
+    `}>
+      <div className={`w-7 h-7 rounded mb-2.5 flex items-center justify-center ${iconBg}`}>
+        <Icon className={`w-3.5 h-3.5 ${iconColor}`} />
+      </div>
+      <div className="text-xs font-semibold text-foreground leading-tight">{label}</div>
+      <div className="text-[10px] text-muted mt-0.5">{sub}</div>
+      {active && (
+        <div className="mt-2 flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse inline-block" />
+          <span className="text-[10px] text-primary font-medium">Running</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Connector line ────────────────────────────────────────────────────── */
+function Connector() {
+  return (
+    <div className="flex items-center self-stretch pt-[22px]">
+      <div className="h-px w-5 border-t border-dashed border-border/70" />
+      <div className="w-1 h-1 rounded-full bg-border/70 flex-shrink-0" />
+    </div>
+  );
+}
+
+/* ── Workflow UI mockup ────────────────────────────────────────────────── */
+function WorkflowMockup() {
+  return (
+    <div className="rounded-xl border border-border bg-card overflow-hidden shadow-2xl shadow-black/40">
+      {/* Browser chrome */}
+      <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-background/50">
+        <div className="flex gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-border/60" />
+          <div className="w-2.5 h-2.5 rounded-full bg-border/60" />
+          <div className="w-2.5 h-2.5 rounded-full bg-border/60" />
+        </div>
+        <div className="flex-1 flex justify-center">
+          <div className="text-[11px] text-muted font-mono px-3 py-1 rounded bg-background/60 border border-border/50">
+            app.flowai.io / workflows / onboarding
+          </div>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
+          <span className="text-[11px] text-muted">Live</span>
+        </div>
+      </div>
+
+      {/* Workflow name bar */}
+      <div className="flex items-center justify-between px-4 py-2 border-b border-border/40 bg-background/20">
+        <span className="text-xs font-semibold text-foreground/80">Customer Onboarding</span>
+        <div className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+          <span className="text-[10px] text-emerald-400 font-medium">Active</span>
+        </div>
+      </div>
+
+      {/* Canvas with dot grid */}
+      <div className="p-5 bg-[radial-gradient(rgba(245,242,238,0.025)_1px,transparent_1px)] bg-[size:18px_18px]">
+        <div className="flex items-center gap-0">
+          <WorkflowNode
+            icon={Webhook}
+            label="Webhook"
+            sub="New signup"
+            iconColor="text-primary"
+            iconBg="bg-primary/15"
+          />
+          <Connector />
+          <WorkflowNode
+            icon={Zap}
+            label="AI Classify"
+            sub="Analyzing..."
+            active
+            iconColor="text-primary"
+            iconBg="bg-primary/15"
+          />
+          <Connector />
+          <WorkflowNode
+            icon={Filter}
+            label="Filter"
+            sub="High priority"
+            iconColor="text-amber-400"
+            iconBg="bg-amber-500/15"
+          />
+          <Connector />
+          <WorkflowNode
+            icon={MessageSquare}
+            label="Slack"
+            sub="#sales-team"
+            iconColor="text-sky-400"
+            iconBg="bg-sky-500/15"
+          />
+        </div>
+
+        {/* Second dimmer workflow row */}
+        <div className="mt-4 flex items-center gap-0 opacity-35">
+          <WorkflowNode
+            icon={Mail}
+            label="Email Trigger"
+            sub="Daily digest"
+            iconColor="text-violet-400"
+            iconBg="bg-violet-500/15"
+          />
+          <Connector />
+          <WorkflowNode
+            icon={Zap}
+            label="Summarize"
+            sub="GPT-4o"
+            iconColor="text-primary"
+            iconBg="bg-primary/15"
+          />
+          <Connector />
+          <WorkflowNode
+            icon={Mail}
+            label="Send Email"
+            sub="to subscribers"
+            iconColor="text-violet-400"
+            iconBg="bg-violet-500/15"
+          />
+        </div>
+      </div>
+
+      {/* Footer stats */}
+      <div className="border-t border-border px-4 py-3 flex items-center gap-5 bg-background/30">
+        <div className="flex items-center gap-1.5 text-[11px] text-muted">
+          <Activity className="w-3 h-3" />
+          <span>284 runs today</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-[11px] text-muted">
+          <Clock className="w-3 h-3" />
+          <span>Avg 1.8s</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-[11px] text-muted">
+          <CheckCircle className="w-3 h-3 text-emerald-400" />
+          <span>98.7% success</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
 export function HeroSection() {
-    return <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />        
-            <motion.div 
-            animate={{scale: [1, 1.2, 1], rotate: [0, 90, 0]}}
-            transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 
-            rounded-full blur-3xl" />
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Dot grid background — no blobs */}
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(245,242,238,0.04)_1px,transparent_1px)] bg-[size:28px_28px]" />
+      {/* Subtle radial fade from top */}
+      <div className="absolute inset-0 [background:radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(249,115,22,0.07),transparent)]" />
 
-            <motion.div 
-            animate={{scale: [1, 1.3, 1], rotate: [0, -90, 0]}}
-            transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-secondary/20 
-            rounded-full blur-3xl" />
+      <div className="container mx-auto max-w-7xl px-6 relative z-10 py-20">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left — editorial text */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="space-y-8"
+          >
+            {/* Label */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="inline-flex items-center gap-2"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse inline-block" />
+              <span className="text-xs uppercase tracking-[0.12em] text-muted font-medium">
+                AI-Powered Automation
+              </span>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 }}
+              className="text-5xl md:text-7xl font-bold leading-[1.0] tracking-tight"
+            >
+              Build workflows<br />
+              that{" "}
+              <span className="text-primary">scale</span>
+              {" "}with<br />
+              intelligence.
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="text-base text-muted max-w-md leading-relaxed"
+            >
+              Connect your tools, define your logic, let AI handle the rest.
+              From prototype to production in minutes — no code required.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45 }}
+              className="flex flex-col sm:flex-row gap-3"
+            >
+              <Link
+                to="/"
+                className="inline-flex items-center justify-center gap-2 font-semibold bg-primary text-white hover:bg-primary/90 px-7 py-3.5 rounded-lg transition-colors duration-200 text-sm"
+              >
+                Get Started Free <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 font-medium text-foreground border border-border hover:border-foreground/25 hover:bg-card/60 px-7 py-3.5 rounded-lg transition-colors duration-200 text-sm"
+              >
+                Book a Demo
+              </Link>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="flex gap-8 pt-5 border-t border-border"
+            >
+              <div>
+                <div className="text-2xl font-bold text-foreground">10k+</div>
+                <div className="text-xs text-muted mt-0.5">Active Users</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-foreground">1M+</div>
+                <div className="text-xs text-muted mt-0.5">Workflows Automated</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-foreground">99.9%</div>
+                <div className="text-xs text-muted mt-0.5">Uptime</div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right — workflow UI mockup */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="hidden lg:block"
+          >
+            <WorkflowMockup />
+          </motion.div>
         </div>
-        <div className="container mx-auto max-w-7xl px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
-            initial={{opacity: 0, x: -50}}
-            animate={{opacity: 1, x: 0}}
-            transition={{duration: 0.8}}
-            className="space-y-8">
-                <motion.div
-                initial={{opacity: 0, y: 20}}
-                animate={{opacity: 1, y:0}}
-                transition={{delay: 0.2}}
-                className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-                    <Sparkles className="w-4 h-4 text-primary" />
-                    <span className="text-sm text-foreground">AI-Powered Automation</span>
-                </motion.div>
-
-                <motion.h1
-                initial={{opacity: 0, y: 20}}
-                animate={{opacity: 1, y:0}}
-                transition={{delay: 0.3}}
-                className="text-5xl md:text-7xl font-bold leading-tight">
-                    Automate Your{' '}
-                    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                        Workflows
-                    </span>{' '}
-                    with AI
-                </motion.h1>
-
-                <motion.p
-                initial={{opacity: 0, y: 20}}
-                animate={{opacity: 1, y:0}}
-                transition={{delay: 0.4}}
-                className="text-lg text-muted max-w-xl">
-                    Build, deploy and scale AI-powered automation in minutes. No coding required.
-              </motion.p>
-
-              <motion.div
-              initial={{opacity: 0, y: 20}}
-              animate={{opacity: 1, y: 0}}
-              transition={{delay: 0.5}}
-              className="flex flex-col sm:flex-row gap-4">
-                <Link to="/" className=" inline-flex items-center justify-center font-medium bg-gradient-to-r from-primary to-secondary text-background hover:shadow-lg hover:shadow-primary/20 hover:scale-105 px-8 py-4 text-lg rounded-lg transition-shadow transition-transform duration-300">
-                    Get Started Free <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-                <Link to="/contact" className="inline-flex items-center justify-center font-medium bg-card/80 backdrop-blur-sm text-foreground border border-border hover:border-primary/50 hover:bg-card px-8 py-4 text-lg rounded-lg transition-border transition-colors duration-300">
-                    Book a Demo <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </motion.div> 
-
-              <motion.div
-              initial={{opacity: 0, y: 20}}
-              animate={{opacity: 1, y: 0}}
-              transition={{delay: 0.6}}
-              className="flex gap-8 pt-4">
-                <div>
-                    <div className="text-3xl font-bold text-primary">10k+</div>
-                    <div className="text-sm text-muted">Active Users</div>
-                </div>
-                <div>
-                    <div className="text-3xl font-bold text-primary">1M+</div>
-                    <div className="text-sm text-muted">Workflows Automated</div>
-                </div>
-                <div>
-                    <div className="text-3xl font-bold text-primary">99.9%</div>
-                    <div className="text-sm text-muted">Uptime</div>
-                </div>
-              </motion.div>
-            </motion.div>
-            <motion.div
-            initial={{opacity: 0, x:50}}
-            animate={{opacity: 1, x: 0}}
-            transition={{duration: 0.8}}
-            className="relative h-[600px] hidden lg:block">
-                <motion.div
-              animate={{
-                y: [0, -20, 0],
-                rotate: [-2, 2, -2],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="absolute top-20 left-0 w-64 p-6 rounded-2xl bg-card/80 backdrop-blur-xl border border-border shadow-xl"
-            >
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-4">
-                <Sparkles className="w-6 h-6 text-background" />
-              </div>
-              <div className="text-sm font-semibold mb-2">AI Automation</div>
-              <div className="text-xs text-muted">Automate complex workflows with AI</div>
-              <div className="mt-4 h-2 bg-background/50 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: '75%' }}
-                  transition={{ delay: 1, duration: 1.5 }}
-                  className="h-full bg-gradient-to-r from-primary to-secondary"
-                />
-              </div>
-            </motion.div>
-
-            {/* Floating Card 2 */}
-            <motion.div
-              animate={{
-                y: [0, 20, 0],
-                rotate: [2, -2, 2],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: 0.5,
-              }}
-              className="absolute top-40 right-0 w-72 p-6 rounded-2xl bg-card/80 backdrop-blur-xl border border-border shadow-xl"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <div className="text-sm font-semibold">Analytics Dashboard</div>
-                <div className="text-xs text-primary">+24%</div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted">Tasks Completed</span>
-                  <span className="text-sm font-semibold">1,284</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted">Time Saved</span>
-                  <span className="text-sm font-semibold">156h</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted">Success Rate</span>
-                  <span className="text-sm font-semibold">98.5%</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Floating Card 3 */}
-            <motion.div
-              animate={{
-                y: [0, -15, 0],
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 7,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: 1,
-              }}
-              className="absolute bottom-20 left-10 w-56 p-6 rounded-2xl bg-card/80 backdrop-blur-xl border border-border shadow-xl"
-            >
-              <div className="text-sm font-semibold mb-4">Team Collaboration</div>
-              <div className="flex -space-x-2 mb-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary border-2 border-card"
-                  />
-                ))}
-                <div className="w-8 h-8 rounded-full bg-background/50 border-2 border-card flex items-center justify-center">
-                  <span className="text-xs">+12</span>
-                </div>
-              </div>
-              <div className="text-xs text-muted">16 team members active</div>
-            </motion.div>
-            </motion.div>
-            </div>
-        </div>
+      </div>
     </section>
+  );
 }

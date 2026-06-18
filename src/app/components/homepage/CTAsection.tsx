@@ -1,119 +1,66 @@
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function CTAsection() {
-    return (
-      <section className="py-32 relative">
-        {/* Background Effects */}
-        <div className="absolute inset-0">
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 180, 0],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="absolute top-0 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[100px]"
-          />
-          <motion.div
-            animate={{
-              scale: [1, 1.3, 1],
-              rotate: [0, -180, 0],
-            }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-secondary/20 rounded-full blur-3xl"
-          />
-        </div>
-  
-        <div className="container mx-auto max-w-7xl px-6 relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            {/* Main Content */}
-            <div className="relative p-12 md:p-16 rounded-3xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border border-border overflow-hidden">
-              {/* Grid Pattern */}
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-              
-              <div className="relative z-10">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+  return (
+    <section className="py-28 border-t border-border/50">
+      <div className="container mx-auto max-w-7xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative rounded-2xl border border-border overflow-hidden"
+        >
+          {/* Dot grid */}
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(245,242,238,0.035)_1px,transparent_1px)] bg-[size:22px_22px]" />
+          {/* Warm top glow */}
+          <div className="absolute inset-0 [background:radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(249,115,22,0.08),transparent)]" />
+
+          <div className="relative z-10 px-10 py-16 md:px-16 md:py-20">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-[1.0]">
+                Ready to<br />
+                automate?
+              </h2>
+              <p className="text-base text-muted mb-10 max-w-md leading-relaxed">
+                Join thousands of teams already using FlowAI to streamline their
+                workflows and save hours every week.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  to="/"
+                  className="inline-flex items-center justify-center gap-2 font-semibold bg-primary text-white hover:bg-primary/90 px-7 py-3.5 rounded-lg transition-colors duration-200 text-sm"
                 >
-                  <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                    Ready to{' '}
-                    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                      automate
-                    </span>
-                    ?
-                  </h2>
-                  <p className="text-xl text-muted mb-10 max-w-2xl mx-auto">
-                    Join thousands of teams already using FlowAI to streamline their workflows and boost productivity.
-                  </p>
-                </motion.div>
-  
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center"
-                >
-                <Link to="/" className=" inline-flex items-center justify-center font-medium bg-gradient-to-r from-primary to-secondary text-background hover:shadow-lg hover:shadow-primary/20 hover:scale-105 px-8 py-4 text-lg rounded-lg transition-shadow transition-transform duration-300">
-                    Get Started Free
+                  Get Started Free <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link to="/contact" className="inline-flex items-center justify-center font-medium bg-card/80 backdrop-blur-sm text-foreground border border-border hover:border-primary/50 hover:bg-card px-8 py-4 text-lg rounded-lg transition-border transition-colors duration-300">
-                    Book a Demo
-                </Link>
-                </motion.div>
-  
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  className="mt-8 text-sm text-muted"
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 font-medium text-foreground border border-border hover:border-foreground/25 hover:bg-card/60 px-7 py-3.5 rounded-lg transition-colors duration-200 text-sm"
                 >
-                  No credit card required • Free 14-day trial • Cancel anytime
-                </motion.p>
+                  Book a Demo
+                </Link>
               </div>
+
+              <p className="mt-6 text-xs text-muted/70">
+                No credit card required · Free 14-day trial · Cancel anytime
+              </p>
             </div>
-  
-            {/* Feature Badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mt-12 flex flex-wrap justify-center gap-8 text-sm"
-            >
-              <div className="flex items-center gap-2 text-muted">
-                <div className="w-2 h-2 rounded-full bg-primary" />
-                <span>SOC 2 Certified</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted">
-                <div className="w-2 h-2 rounded-full bg-primary" />
-                <span>GDPR Compliant</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted">
-                <div className="w-2 h-2 rounded-full bg-primary" />
-                <span>99.9% Uptime</span>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-    );
-  }
+
+            {/* Trust badges — right aligned on desktop */}
+            <div className="absolute bottom-10 right-10 hidden md:flex flex-col gap-2 text-right">
+              {["SOC 2 Certified", "GDPR Compliant", "99.9% Uptime"].map((badge) => (
+                <div key={badge} className="flex items-center justify-end gap-2 text-xs text-muted">
+                  <span>{badge}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
