@@ -69,7 +69,7 @@ export function Pricing() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-4 max-w-5xl">
+        <div className="grid mx-auto md:grid-cols-3 gap-4 max-w-5xl">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -77,18 +77,20 @@ export function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -4, boxShadow: plan.popular ? "0 20px 40px rgba(249,115,22,0.14)" : "0 20px 40px rgba(249,115,22,0.08)", transition: { type: "spring", stiffness: 380, damping: 28 } }}
               className={`
-                relative rounded-xl border p-7 flex flex-col transition-colors duration-300
+                relative overflow-hidden rounded-xl border p-7 flex flex-col transition-colors duration-300 group
                 ${plan.popular
                   ? "border-primary/50 bg-primary/5"
-                  : "border-border bg-card/60 hover:border-border/80"}
+                  : "border-border bg-card/60 hover:border-primary/20"}
               `}
             >
+              <div className="pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 [background:radial-gradient(ellipse_100%_60%_at_50%_0%,rgba(249,115,22,0.05),transparent)]" />
               {plan.popular && (
-                <div className="absolute -top-3 left-6">
-                  <div className="px-3 py-1 rounded bg-primary text-white text-xs font-semibold">
+                <div className="mb-4">
+                  <span className="px-2.5 py-1 rounded bg-primary text-white text-xs font-semibold">
                     Most Popular
-                  </div>
+                  </span>
                 </div>
               )}
 
@@ -138,7 +140,7 @@ export function Pricing() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mt-8"
+          className="mt-8 text-center"
         >
           <a href="/pricing" className="text-sm text-primary hover:text-primary/80 transition-colors font-medium">
             See full feature comparison →
